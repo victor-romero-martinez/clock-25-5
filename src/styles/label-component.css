@@ -1,0 +1,22 @@
+.label-container, .label-btn-container, .label-btn-container button {
+  display: flex;
+  align-items: center;
+}
+
+.label-container {
+  flex-direction: column;
+
+  & span {
+    text-transform: capitalize;
+  }
+
+  button:last-child {
+    transform: rotate(180deg);
+  }
+
+}
+
+.arrow-icon {
+  width: 40px;
+  height: 40px;
+}

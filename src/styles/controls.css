@@ -1,0 +1,8 @@
+.controls-btn {
+  margin-inline: .3rem;
+
+  .control-icons {
+    width: 40px;
+    height: 40px;
+  }
+}

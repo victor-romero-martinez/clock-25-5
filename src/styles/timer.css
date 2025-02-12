@@ -1,0 +1,17 @@
+.timer-container, .timer-wrapper {
+  display: flex;
+}
+
+#timer-label {
+  text-transform: capitalize;
+}
+
+.timer-container {
+  justify-content: center;
+}
+
+.timer-wrapper {
+  width: fit-content;
+  flex-direction: column;
+  justify-content: center;
+}
