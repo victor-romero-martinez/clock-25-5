@@ -1,11 +1,12 @@
 import { useReducer } from "react";
-import { clockReducer, ClockState } from "../reducers/clockReducer";
+import { clockReducer } from "../reducers/clockReducer";
+import { ClockState } from "../types/types";
 import { ClockContext } from "./clockContext";
 
 const initialState: ClockState = {
-  breakLength: 1,
-  sessionLength: 1,
-  timer: "00:05",
+  breakLength: 5,
+  sessionLength: 25,
+  timer: "25:00",
   isSession: true,
   isPlay: false,
 };

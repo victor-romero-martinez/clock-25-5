@@ -1,8 +1,9 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { ClockContext } from "../context/clockContext";
-import { ACTIONS } from "../reducers/clockReducer";
+import { ACTIONS } from "../types/types";
 import { secondsToString } from "../utils/seconds-string";
 import { stringToSeconds } from "../utils/string-seconds";
+import Audio from "./audio";
 import Controls from "./controls";
 import LabelComponent from "./label-component";
 import Timer from "./timer";
@@ -18,6 +19,7 @@ export default function Clock() {
 
   const [leftTime, setLeftTime] = useState(stringToSeconds(state.timer));
   const [timerEnded, setTimerEnded] = useState(false);
+  const [audioPlay, setAudioPlay] = useState(false);
   const intervalId = useRef<number | null>(null);
 
   const startInterval = () => {
@@ -39,6 +41,20 @@ export default function Clock() {
     if (intervalId.current !== null) {
       clearInterval(intervalId.current);
       intervalId.current = null;
+    }
+  };
+
+  const handleReset = () => {
+    stopInterval();
+    setAudioPlay(false);
+    dispatch({ type: ACTIONS.RESET });
+    setLeftTime(stringToSeconds(state.timer));
+    setTimerEnded(false);
+
+    const audioElement = document.getElementById("beep") as HTMLAudioElement;
+    if (audioElement) {
+      audioElement.pause();
+      audioElement.currentTime = 0;
     }
   };
 
@@ -71,17 +87,10 @@ export default function Clock() {
       if (state.isPlay) {
         startInterval();
       }
-
+      setAudioPlay(true);
       setTimerEnded(false);
     }
   }, [timerEnded, state.timer, state.isSession, state.isPlay, dispatch]);
-
-  const handleReset = () => {
-    stopInterval();
-    dispatch({ type: ACTIONS.RESET });
-    setLeftTime(stringToSeconds(state.timer));
-    setTimerEnded(false);
-  };
 
   return (
     <>
@@ -115,6 +124,8 @@ export default function Clock() {
         onStart={() => dispatch({ type: ACTIONS.PLAY_PAUSE })}
         onReset={handleReset}
       />
+
+      <Audio isPlaying={audioPlay} stateFn={() => setAudioPlay(false)} />
     </>
   );
 }

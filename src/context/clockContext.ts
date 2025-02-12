@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { ClockAction, ClockState } from "../reducers/clockReducer";
+import { ClockAction, ClockState } from "../types/types";
 
 export const ClockContext = createContext<{
   state: ClockState;
