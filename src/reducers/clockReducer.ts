@@ -10,7 +10,7 @@ export const clockReducer = (
       return {
         ...state,
         breakLength: Math.min(state.breakLength + 1, 60),
-        timer: state.isSession
+        timer: !state.isSession
           ? numberToTimeString(Math.min(state.breakLength + 1, 60))
           : state.timer,
       };
@@ -18,7 +18,7 @@ export const clockReducer = (
       return {
         ...state,
         breakLength: Math.max(state.breakLength - 1, 1),
-        timer: state.isSession
+        timer: !state.isSession
           ? numberToTimeString(Math.max(state.breakLength - 1, 1))
           : state.timer,
       };
