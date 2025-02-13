@@ -1,13 +1,26 @@
-.label-container, .label-btn-container, .label-btn-container button {
+.label-container,
+.label-btn-container,
+.label-btn-container button {
   display: flex;
   align-items: center;
 }
 
 .label-container {
+  width: 108px;
+  background-color: var(--secondary);
+  border: 2px solid var(--timer-inactive);
   flex-direction: column;
+  padding: 8px 18px;
+  border-radius: .8vmax;
 
   & span {
     text-transform: capitalize;
+  }
+
+  .label-value {
+    width: 1.6em;
+    font-size: x-large;
+    font-weight: 700;
   }
 
   button:last-child {

@@ -1,7 +1,7 @@
 export default function Title() {
   return (
     <>
-      <h1>Crono 25 + 5</h1>
+      <h1>Timer 25 + 5</h1>
     </>
   );
 }

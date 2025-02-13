@@ -1,6 +1,5 @@
 import { useClock } from "../hook/use-clock";
 import { ACTIONS } from "../types/types";
-import { secondsToString } from "../utils/seconds-string";
 import Audio from "./audio";
 import Controls from "./controls";
 import LabelComponent from "./label-component";
@@ -12,9 +11,13 @@ export default function Clock() {
 
   return (
     <>
-      <Timer session={state.isSession} timeLeft={secondsToString(leftTime)} />
+      <Timer
+        session={state.isSession}
+        timeLeft={leftTime}
+        isActive={state.isPlay}
+      />
 
-      <div className="label-section">
+      <div className="label-section separator">
         <LabelComponent
           title="break"
           value={state.breakLength.toString()}

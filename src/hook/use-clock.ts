@@ -85,7 +85,15 @@ export function useClock() {
       setAudioPlay(true);
       setTimerEnded(false);
     }
-  }, [timerEnded, state.timer, state.isSession, state.isPlay, dispatch]);
+  }, [
+    timerEnded,
+    state.timer,
+    state.isSession,
+    state.isPlay,
+    state.breakLength,
+    state.sessionLength,
+    dispatch,
+  ]);
 
   return {
     state,

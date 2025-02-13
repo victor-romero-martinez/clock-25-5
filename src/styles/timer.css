@@ -2,16 +2,40 @@
   display: flex;
 }
 
-#timer-label {
-  text-transform: capitalize;
-}
-
 .timer-container {
   justify-content: center;
 }
 
 .timer-wrapper {
-  width: fit-content;
+  width: 100px;
+  aspect-ratio: 1;
   flex-direction: column;
   justify-content: center;
+  background-color: var(--secondary);
+  border: 2px solid var(--timer-inactive);
+  border-radius: 50%;
+  padding: 3rem;
+  font-size: x-large;
+  font-weight: 700;
+}	
+
+#timer-label {
+  text-transform: capitalize;
+}
+
+.timer-active {
+  background-color: var(--active);
+  border-color: var(--timer-active);
+}
+
+.warning {
+  animation: blinking 1s ease infinite;
+}
+
+@keyframes blinking {
+  50% {
+    color: var(--timer-warning);
+    background-color: var(--warning);
+    border-color: var(--timer-warning);
+  }
 }

@@ -12,11 +12,12 @@ export default function Audio({
   useEffect(() => {
     if (!audioRef.current) return;
 
-    audioRef.current.play();
-    audioRef.current.addEventListener("ended", stateFn);
+    const newAudioRef = audioRef.current;
+    newAudioRef.play();
+    newAudioRef.addEventListener("ended", stateFn);
 
-    return () => audioRef.current?.removeEventListener("ended", stateFn);
-  }, [isPlaying]);
+    return () => newAudioRef?.removeEventListener("ended", stateFn);
+  }, [isPlaying, stateFn]);
 
   return (
     <>

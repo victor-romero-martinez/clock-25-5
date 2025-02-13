@@ -22,7 +22,9 @@ export default function LabelComponent(props: LabelComponentProps) {
           >
             <IconArrow />
           </button>
-          <span id={`${props.title}-length`}>{props.value}</span>
+          <span id={`${props.title}-length`} className="label-value">
+            {props.value}
+          </span>
           <button
             type="button"
             id={`${props.title}-decrement`}
