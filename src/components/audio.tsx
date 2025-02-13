@@ -10,7 +10,7 @@ export default function Audio({
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    if (!audioRef.current) return;
+    if (!audioRef.current || !isPlaying) return;
 
     const newAudioRef = audioRef.current;
     newAudioRef.play();
