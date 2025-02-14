@@ -6,8 +6,15 @@ import LabelComponent from "./label-component";
 import Timer from "./timer";
 
 export default function Clock() {
-  const { state, dispatch, leftTime, handleReset, audioPlay, setAudioPlay } =
-    useClock();
+  const {
+    state,
+    dispatch,
+    leftTime,
+    onStart,
+    handleReset,
+    audioPlay,
+    setAudioPlay,
+  } = useClock();
 
   return (
     <>
@@ -40,11 +47,7 @@ export default function Clock() {
         />
       </div>
 
-      <Controls
-        isPlay={state.isPlay}
-        onStart={() => dispatch({ type: ACTIONS.PLAY_PAUSE })}
-        onReset={handleReset}
-      />
+      <Controls isPlay={state.isPlay} onStart={onStart} onReset={handleReset} />
 
       <Audio isPlaying={audioPlay} stateFn={() => setAudioPlay(false)} />
     </>

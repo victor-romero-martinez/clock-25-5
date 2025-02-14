@@ -39,6 +39,10 @@ export function useClock() {
     }
   };
 
+  const onStart = useCallback(() => {
+    dispatch({ type: ACTIONS.PLAY_PAUSE });
+  }, [dispatch]);
+
   const handleReset = useCallback(() => {
     stopInterval();
     setAudioPlay(false);
@@ -51,7 +55,7 @@ export function useClock() {
       audioElement.pause();
       audioElement.currentTime = 0;
     }
-  }, []);
+  }, [dispatch, state.timer]);
 
   useEffect(() => {
     setLeftTime(stringToSeconds(state.timer));
@@ -101,6 +105,7 @@ export function useClock() {
     leftTime,
     audioPlay,
     setAudioPlay,
+    onStart,
     handleReset,
   };
 }
