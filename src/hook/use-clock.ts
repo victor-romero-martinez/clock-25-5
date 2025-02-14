@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { ClockContext } from "../context/clockContext";
 import { ACTIONS } from "../types/types";
 import { stringToSeconds } from "../utils/string-seconds";
@@ -39,7 +39,7 @@ export function useClock() {
     }
   };
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     stopInterval();
     setAudioPlay(false);
     dispatch({ type: ACTIONS.RESET });
@@ -51,7 +51,7 @@ export function useClock() {
       audioElement.pause();
       audioElement.currentTime = 0;
     }
-  };
+  }, []);
 
   useEffect(() => {
     setLeftTime(stringToSeconds(state.timer));
